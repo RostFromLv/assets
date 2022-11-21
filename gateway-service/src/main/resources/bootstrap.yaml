@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            - first-service:
+                uri: ${FIRST_SERVICE:http://localhost:8080}
+            - second-service:
+                uri: ${SECOND_SERVICE:http://localhost:8081}
