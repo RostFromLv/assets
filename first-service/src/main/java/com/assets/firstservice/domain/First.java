@@ -24,13 +24,13 @@ import org.hibernate.annotations.SQLDelete;
  * @since 1.0.0-SNAPSHOT
  */
 @Data
-@Table(name = "cars")
-@Entity(name = "cars")
+@Table(name = "first")
+@Entity(name = "first")
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@SQLDelete(sql = "UPDATE  cars SET  deleted = true Where id =?")
+@SQLDelete(sql = "UPDATE  first SET  deleted = true Where id =?")
 public class First extends SoftDeleteEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

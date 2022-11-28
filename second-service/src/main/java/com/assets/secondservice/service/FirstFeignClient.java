@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "first-service")
 public interface FirstFeignClient {
-  String carUri  = "/api/v1/cars";
+  String carUri  = "/api/v1/first";
 
   @GetMapping(carUri+"/{id}")
   FirstDto foundById(@PathVariable final Long id);

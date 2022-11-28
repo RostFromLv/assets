@@ -12,14 +12,16 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.SQLDelete;
 
 @Data
-@Table(name = "workers")
-@Entity(name = "workers")
+@Table(name = "second")
+@Entity(name = "second")
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@SQLDelete(sql = "UPDATE  second SET  deleted = true Where id =?")
 public class Second extends SoftDeleteEntity {
 
   @Id

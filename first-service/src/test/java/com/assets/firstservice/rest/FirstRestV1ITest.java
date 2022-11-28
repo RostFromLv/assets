@@ -24,7 +24,7 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SuppressWarnings(value = "argument") // For testing cases
-public class FirstRestV1IT extends AbstractTest {
+public class FirstRestV1ITest extends AbstractTest {
 
   private final FirstRepository firstRepository;
   private final FirstService firstService;
@@ -33,8 +33,8 @@ public class FirstRestV1IT extends AbstractTest {
   private int port;
 
   @Autowired
-  public FirstRestV1IT(FirstRepository firstRepository,
-                       FirstService firstService) {
+  public FirstRestV1ITest(FirstRepository firstRepository,
+                          FirstService firstService) {
     this.firstRepository = firstRepository;
     this.firstService = firstService;
   }
@@ -189,7 +189,7 @@ public class FirstRestV1IT extends AbstractTest {
   }
 
   private RequestSpecification request() {
-    return RestAssured.given().port(port).basePath("/api/v1/cars");
+    return RestAssured.given().port(port).basePath("/api/v1/first");
   }
 
   private RequestSpecification requestJson() {

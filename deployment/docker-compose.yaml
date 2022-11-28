@@ -11,7 +11,19 @@ services:
       - '9411:9411'
     networks:
       - spring-network
-#  Postgres
+  # Config-service
+  config-service:
+    container_name: config-service
+    build:
+      context: ../configuration-server
+      dockerfile: Dockerfile
+    ports:
+      - "8889:8889"
+    networks:
+      - spring-network
+    depends_on:
+      - "zipkin"
+  #  Postgres
   postgres:
     container_name: postgresql
     restart: always
@@ -25,7 +37,9 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-# GATEWAY
+    depends_on:
+      - "config-service"
+  # GATEWAY
   gateway:
     container_name: gateway
     build:
@@ -34,14 +48,17 @@ services:
     ports:
       - "8888:8888"
     environment:
+      CONFIG_SERVICE: http://config-service:8889
       ZIPKIN_HOST: http://zipkin:9411
       FIRST_SERVICE: http://first-service:8080
       SECOND_SERVICE: http://second-service:8081
     depends_on:
-      - postgres
+        zipkin:
+         condition: service_healthy
     networks:
       - spring-network
-#  First-service
+
+  #  First-service
   first-service:
     container_name: first-service
     build:
@@ -50,12 +67,14 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/car
+      CONFIG_SERVICE: http://config-service:8889
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/first_service
+    restart: on-failure
     depends_on:
-      - gateway
+      - "gateway"
     networks:
       - spring-network
-  # Second-service
+# Second-service
   second-service:
     container_name: second-service
     build:
@@ -64,13 +83,14 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/workers
+      CONFIG_SERVICE: http://config-service:8889
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/second_service
       FIRST_SERVICE: http://first-service:8080
     depends_on:
-      - first-service
+      - "first-service"
     networks:
       - spring-network
-
+    restart: on-failure
 networks:
   spring-network:
     driver: bridge

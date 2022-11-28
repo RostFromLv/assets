@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/workers")
+@RequestMapping("/api/v1/second")
 public class SecondRestV1 {
   private final SecondService secondService;
 
@@ -68,7 +68,7 @@ public class SecondRestV1 {
     secondService.deleteAll();
   }
 
-  @GetMapping("/car/{carId}")
+  @GetMapping("/first/{carId}")
   @ResponseStatus(value = HttpStatus.OK)
   public  Collection<SecondDto> getByCarId(@PathVariable Long carId) {
     return secondService.getByCarId(carId);

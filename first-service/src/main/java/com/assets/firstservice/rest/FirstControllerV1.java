@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/cars")
+@RequestMapping("/api/v1/first")
 public class FirstControllerV1 {
 
   private final FirstService firstService;

@@ -24,26 +24,26 @@ public interface FirstRepository extends JpaRepository<First, Long> {
   @Override
   @Transactional(readOnly = true)
   @Query(nativeQuery = true,
-      value = "select * from cars where cars.deleted = false  and cars.id = :id ")
+      value = "select * from first where first.deleted = false  and first.id = :id ")
   Optional<First> findById(@NonNull Long id);
 
   @NonNull
   @Override
-  @Query(nativeQuery = true
-      , value = "select  * from cars where cars.deleted = false")
+  @Query(nativeQuery = true,
+      value = "select  * from first where first.deleted = false")
   @Transactional(readOnly = true)
   List<First> findAll();
 
   @NonNull
   @Query(nativeQuery = true,
-      value = "select * from  cars")
+      value = "select * from  first")
   @Transactional(readOnly = true)
   List<First> findAllCars();
 
   @Override
   @Transactional(readOnly = true)
   @Query(nativeQuery = true,
-      value = "select case when exists(select  * from cars where cars.id = :id and cars.deleted = false) " +
+      value = "select case when exists(select  * from first where first.id = :id and first.deleted = false) " +
           "THEN CAST(1 as BIT) ELSE CAST(0 AS BIT) END")
-  boolean existsById(Long id);
+  boolean existsById(@NonNull Long id);
 }

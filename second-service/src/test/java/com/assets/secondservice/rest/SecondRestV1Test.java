@@ -26,23 +26,23 @@ import org.springframework.test.context.ActiveProfiles;
 @SuppressWarnings(value = "argument") // For testing cases
 public class SecondRestV1Test extends AbstractTest {
 
-  private final SecondRepository workerRepository;
+  private final SecondRepository secondRepository;
   private final SecondService secondService;
 
   @LocalServerPort
   private int port;
 
   @Autowired
-  public SecondRestV1Test(SecondRepository workerRepository,
+  public SecondRestV1Test(SecondRepository secondRepository,
                           SecondService secondService) {
-    this.workerRepository = workerRepository;
+    this.secondRepository = secondRepository;
     this.secondService = secondService;
   }
 
 
   @BeforeEach
   void beforeEach() {
-    workerRepository.deleteAll();
+    secondRepository.deleteAll();
     RestAssured.reset();
 
     Assertions.assertTrue(secondService.findAll().isEmpty());
@@ -190,7 +190,7 @@ public class SecondRestV1Test extends AbstractTest {
   }
 
   private RequestSpecification request() {
-    return RestAssured.given().port(port).basePath("/api/v1/workers");
+    return RestAssured.given().port(port).basePath("/api/v1/second");
   }
 
   private RequestSpecification requestJson() {
