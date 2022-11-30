@@ -1,6 +1,5 @@
-package com.assets.firstservice.domain;
+package com.assets.commondb.domain;
 
-import com.example.commondtos.domain.SoftDeleteEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,13 +23,13 @@ import org.hibernate.annotations.SQLDelete;
  * @since 1.0.0-SNAPSHOT
  */
 @Data
-@Table(name = "first")
-@Entity(name = "first")
+@Table(name = "first_s")
+@Entity(name = "first_s")
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@SQLDelete(sql = "UPDATE  first SET  deleted = true Where id =?")
+@SQLDelete(sql = "UPDATE  first_s SET  deleted = true Where id =?")
 public class First extends SoftDeleteEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

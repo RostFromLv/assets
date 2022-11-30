@@ -1,6 +1,6 @@
 package com.assets.domain;
 
-import com.example.commondtos.domain.SoftDeleteEntity;
+import com.assets.commondb.domain.SoftDeleteEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

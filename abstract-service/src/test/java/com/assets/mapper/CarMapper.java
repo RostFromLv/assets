@@ -1,7 +1,7 @@
 package com.assets.mapper;
 
 import com.assets.domain.Car;
-import com.example.commondtos.models.FirstDto;
+import com.assets.commondtos.models.FirstDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

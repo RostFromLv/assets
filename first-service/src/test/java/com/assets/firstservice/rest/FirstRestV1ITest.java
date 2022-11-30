@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.assets.commondtos.models.FirstDto;
 import com.assets.firstservice.service.FirstRepository;
 import com.assets.firstservice.service.FirstService;
-import com.example.commondtos.models.FirstDto;
 import com.assets.firstservice.AbstractTest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

@@ -11,6 +11,7 @@ mvn clean install all modules by next order:
 <li>common-dtos</li>
 <li>exception-handler</li>
 <li>abstract-service</li>
+<li>configuration-server</li>
 <li>gateway-service</li>
 <li>first-service</li>
 <li>second-service</li>
@@ -25,3 +26,5 @@ Both services have regular CRUD for extending.
 Second service work with first service throw feign client.
 
 Second-service also have 1 endpoint for requesting first-service.
+
+Configuration server has configs on GitHub, you can change to your repo

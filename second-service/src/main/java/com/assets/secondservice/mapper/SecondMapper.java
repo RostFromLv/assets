@@ -1,8 +1,8 @@
 package com.assets.secondservice.mapper;
 
+import com.assets.commondb.domain.Second;
 import com.assets.mapper.AbstractMapper;
-import com.assets.secondservice.domain.Second;
-import com.example.commondtos.models.SecondDto;
+import com.assets.commondtos.models.SecondDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

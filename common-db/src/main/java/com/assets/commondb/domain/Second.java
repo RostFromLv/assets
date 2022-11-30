@@ -1,6 +1,5 @@
-package com.assets.secondservice.domain;
+package com.assets.commondb.domain;
 
-import com.example.commondtos.domain.SoftDeleteEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,13 +14,13 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
 
 @Data
-@Table(name = "second")
-@Entity(name = "second")
+@Table(name = "second_s")
+@Entity(name = "second_s")
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@SQLDelete(sql = "UPDATE  second SET  deleted = true Where id =?")
+@SQLDelete(sql = "UPDATE  second_s SET  deleted = true Where id =?")
 public class Second extends SoftDeleteEntity {
 
   @Id

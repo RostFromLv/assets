@@ -1,6 +1,6 @@
-package com.example.commondtos.models;
+package com.assets.commondtos.models;
 
-import com.example.commondtos.domain.SoftDeleteEntity;
+import com.assets.commondb.domain.SoftDeleteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,26 +10,23 @@ import lombok.experimental.SuperBuilder;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-/**
- * Simple example of data transport object.
- *
- *
- * @see SoftDeleteEntity
- * @since 1.0.0-SNAPSHOT
- * @author Rosyslav Balushchak
- */
 @Data
 @SuperBuilder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FirstDto extends SoftDeleteEntity {
-  private @Nullable Long id;
+public class SecondDto extends SoftDeleteEntity {
 
-  private @NonNull String brand;
+  @Nullable
+  private Long id;
 
-  private @NonNull String bodyType;
+  @NonNull
+  private String name;
 
-  private @NonNull Double wheelRadius;
+  @NonNull
+  private Float age;
+
+  @NonNull
+  private Long carId;
 }

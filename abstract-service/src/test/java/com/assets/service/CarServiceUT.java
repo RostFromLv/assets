@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 import com.assets.AbstractTest;
 import com.assets.domain.Car;
 import com.assets.mapper.CarMapper;
-import com.example.commondtos.models.FirstDto;
+import com.assets.commondtos.models.FirstDto;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;

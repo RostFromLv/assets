@@ -1,9 +1,9 @@
 package com.assets.firstservice.service;
 
-import com.assets.firstservice.domain.First;
+import com.assets.commondb.domain.First;
+import com.assets.commondtos.models.FirstDto;
 import com.assets.firstservice.mapper.FirstMapper;
 import com.assets.service.AbstractServiceImpl;
-import com.example.commondtos.models.FirstDto;
 import org.springframework.stereotype.Service;
 
 /**

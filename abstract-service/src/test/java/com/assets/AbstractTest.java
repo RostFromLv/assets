@@ -1,7 +1,7 @@
 package com.assets;
 
 import com.assets.domain.Car;
-import com.example.commondtos.models.FirstDto;
+import com.assets.commondtos.models.FirstDto;
 import java.util.Collection;
 import java.util.HashSet;
 

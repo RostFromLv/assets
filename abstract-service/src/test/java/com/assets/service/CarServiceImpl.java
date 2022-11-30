@@ -3,7 +3,7 @@ package com.assets.service;
 import com.assets.domain.Car;
 import com.assets.mapper.AbstractMapper;
 import com.assets.mapper.CarMapper;
-import com.example.commondtos.models.FirstDto;
+import com.assets.commondtos.models.FirstDto;
 import org.springframework.stereotype.Service;
 
 /**

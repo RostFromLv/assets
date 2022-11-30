@@ -1,8 +1,8 @@
 package com.assets.firstservice.service;
 
 
+import com.assets.commondtos.models.FirstDto;
 import com.assets.service.AbstractService;
-import com.example.commondtos.models.FirstDto;
 import java.util.Collection;
 
 /**

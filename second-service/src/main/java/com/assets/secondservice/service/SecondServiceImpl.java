@@ -1,9 +1,9 @@
 package com.assets.secondservice.service;
 
-import com.assets.secondservice.domain.Second;
+import com.assets.commondb.domain.Second;
 import com.assets.secondservice.mapper.SecondMapper;
 import com.assets.service.AbstractServiceImpl;
-import com.example.commondtos.models.SecondDto;
+import com.assets.commondtos.models.SecondDto;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.assets.secondservice.AbstractTest;
-import com.example.commondtos.models.SecondDto;
+import com.assets.commondtos.models.SecondDto;
 import java.util.Collection;
 import javax.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;

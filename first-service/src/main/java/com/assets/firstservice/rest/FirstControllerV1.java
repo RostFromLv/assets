@@ -1,11 +1,13 @@
 package com.assets.firstservice.rest;
 
 
+
+import com.assets.commondtos.models.FirstDto;
 import com.assets.firstservice.service.FirstService;
-import com.example.commondtos.models.FirstDto;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,38 +30,32 @@ public class FirstControllerV1 {
   }
 
   @PostMapping
-  @ResponseStatus(value = HttpStatus.CREATED)
-  public FirstDto create(@RequestBody FirstDto workerDto) {
-    return firstService.create(workerDto);
+  public ResponseEntity<FirstDto> create(@RequestBody FirstDto workerDto) {
+    return new ResponseEntity<>(firstService.create(workerDto),HttpStatus.CREATED);
   }
 
   @PostMapping("/create/all")
-  @ResponseStatus(value = HttpStatus.CREATED)
-  public Collection<FirstDto> createAll(@RequestBody Collection<FirstDto> workerCOllectins) {
-    return firstService.createAll(workerCOllectins);
+  public ResponseEntity<Collection<FirstDto>> createAll(@RequestBody Collection<FirstDto> workerCOllectins) {
+    return new ResponseEntity<>(firstService.createAll(workerCOllectins),HttpStatus.CREATED);
   }
 
   @PutMapping
-  @ResponseStatus(value = HttpStatus.OK)
-  public FirstDto update(@RequestBody FirstDto workerDto) {
+  public ResponseEntity<FirstDto> update(@RequestBody FirstDto workerDto) {
     Long id = workerDto.getId();
-    return firstService.update(workerDto, id);
+    return new ResponseEntity<>(firstService.update(workerDto, id),HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  @ResponseStatus(value = HttpStatus.OK)
-  public FirstDto findById(@PathVariable  Long id) {
-    return firstService.findById(id);
+  public ResponseEntity<FirstDto> findById(@PathVariable  Long id) {
+    return new ResponseEntity<>(firstService.findById(id),HttpStatus.OK);
   }
 
   @GetMapping
-  @ResponseStatus(value = HttpStatus.OK)
-  public Collection<FirstDto> findAll() {
-    return firstService.findAll();
+  public ResponseEntity<Collection<FirstDto>> findAll() {
+    return new ResponseEntity<>(firstService.findAll(),HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
-  @ResponseStatus(value = HttpStatus.NO_CONTENT)
   public void deleteById(@PathVariable Long id) {
     firstService.deleteById(id);
   }

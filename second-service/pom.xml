@@ -37,6 +37,11 @@
 <!--Custom-->
         <dependency>
             <groupId>com.assets</groupId>
+            <artifactId>common-dtos</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.assets</groupId>
             <artifactId>abstract-service</artifactId>
             <version>${abstract-service.version}</version>
         </dependency>

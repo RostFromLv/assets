@@ -1,8 +1,8 @@
 package com.assets.secondservice.service;
 
 
+import com.assets.commondtos.models.SecondDto;
 import com.assets.service.AbstractService;
-import com.example.commondtos.models.SecondDto;
 import java.util.Collection;
 
 public interface SecondService extends AbstractService<SecondDto, Long> {

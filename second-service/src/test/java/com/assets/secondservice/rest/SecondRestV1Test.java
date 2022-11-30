@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.assets.secondservice.AbstractTest;
 import com.assets.secondservice.service.SecondRepository;
 import com.assets.secondservice.service.SecondService;
-import com.example.commondtos.models.SecondDto;
+import com.assets.commondtos.models.SecondDto;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
