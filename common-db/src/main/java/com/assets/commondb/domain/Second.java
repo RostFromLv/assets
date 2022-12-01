@@ -15,7 +15,7 @@ import org.hibernate.annotations.SQLDelete;
 
 @Data
 @Table(name = "second_s")
-@Entity(name = "second_s")
+@Entity
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +34,6 @@ public class Second extends SoftDeleteEntity {
   private Float age;
 
   @Column
-  private long carId;
+  private long firstId;
 
 }

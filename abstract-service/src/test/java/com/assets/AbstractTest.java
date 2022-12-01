@@ -1,6 +1,6 @@
 package com.assets;
 
-import com.assets.domain.Car;
+import com.assets.commondb.domain.First;
 import com.assets.commondtos.models.FirstDto;
 import java.util.Collection;
 import java.util.HashSet;
@@ -21,7 +21,7 @@ public class AbstractTest {
       .bodyType(bodyType)
       .wheelRadius(wheelRadius).build();
 
-  protected final Car carEntity = Car.builder()
+  protected final First firstEntity = First.builder()
       .id(id)
       .brand(brand)
       .bodyType(bodyType)
@@ -33,7 +33,7 @@ public class AbstractTest {
       .bodyType(secondBodyType)
       .wheelRadius(wheelRadius).build();
 
-  protected final Car secondCarEntity = Car.builder()
+  protected final First secondFirstEntity = First.builder()
       .id(sId)
       .brand(brand)
       .bodyType(secondBodyType)
@@ -44,40 +44,40 @@ public class AbstractTest {
       .brand(sBrand)
       .bodyType(secondBodyType)
       .wheelRadius(wheelRadius).build();
-  protected final Car anotherCar = Car.builder()
+  protected final First anotherFirst = First.builder()
       .id(null)
       .brand(sBrand)
       .bodyType(secondBodyType)
       .wheelRadius(wheelRadius).build();
 
-  protected FirstDto getCarDtoWithNullBrand(){
+  protected FirstDto getFirstDtoWithNullBrand(){
     firstDto.setBrand(null);
     return firstDto;
   }
-  protected FirstDto getCarDtoWithNullId(){
+  protected FirstDto getFirstDtoWithNullId(){
     firstDto.setId(null);
     return firstDto;
   }
-  protected Car getCarWithNullId(){
-    carEntity.setId(null);
-    return carEntity;
+  protected First getFirstWithNullId(){
+    firstEntity.setId(null);
+    return firstEntity;
   }
-  protected Car getCarWithNullBrand(){
-    carEntity.setBrand(null);
-    return carEntity;
+  protected First getFirstWithNullBrand(){
+    firstEntity.setBrand(null);
+    return firstEntity;
   }
 
-  protected Collection<FirstDto> getCollectionOfCarDto(){
+  protected Collection<FirstDto> getCollectionOfFirstDto(){
     Collection<FirstDto> expected = new HashSet<>();
     expected.add(firstDto);
     expected.add(secondFirstDto);
     return expected;
   }
 
-  protected Collection<Car> getCollectionOfCarEntity(){
-    Collection<Car> expected = new HashSet<>();
-    expected.add(carEntity);
-    expected.add(secondCarEntity);
+  protected Collection<First> getCollectionOfFirstEntity(){
+    Collection<First> expected = new HashSet<>();
+    expected.add(firstEntity);
+    expected.add(secondFirstEntity);
     return expected;
   }
 }

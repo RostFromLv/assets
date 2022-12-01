@@ -37,7 +37,7 @@ public class SecondServiceIT extends AbstractTest {
 
   //create
   @Test
-  void create_shouldCreateCar_andReturn_createdCarDto(){
+  void create_shouldCreateFirst_andReturn_createdFirstDto(){
      SecondDto createdSecondDto =  secondService.create(anotherSecondDto);
 
      assertNotNull(createdSecondDto);
@@ -46,7 +46,7 @@ public class SecondServiceIT extends AbstractTest {
   }
   //createAll
   @Test
-  void createAll_shouldCreateCars_andReturn_carCollection(){
+  void createAll_shouldCreateFirsts_andReturn_FirstCollection(){
     Assertions.assertTrue(secondService.findAll().isEmpty());
     Collection<SecondDto> collectionOfCreatedWorkers = secondService.createAll(getCollectionOfWorkerDto());
     assertFalse(collectionOfCreatedWorkers.isEmpty());
@@ -54,7 +54,7 @@ public class SecondServiceIT extends AbstractTest {
   }
   //update
   @Test
-  void update_shouldUpdateCar_AndReturnUpdatedCarDto(){
+  void update_shouldUpdateFirst_AndReturnUpdatedFirstDto(){
     SecondDto createdSecondDto = secondService.create(anotherSecondDto);
     assertNotNull(createdSecondDto);
     secondDto.setId(createdSecondDto.getId());
@@ -71,7 +71,7 @@ public class SecondServiceIT extends AbstractTest {
   }
   //findById
   @Test
-  void  findById_ShouldReturn_existCarDto(){
+  void  findById_ShouldReturn_existFirstDto(){
     SecondDto createdSecondDto = secondService.create(anotherSecondDto);
     assertNotNull(createdSecondDto);
 
@@ -89,7 +89,7 @@ public class SecondServiceIT extends AbstractTest {
   }
   //findAll
   @Test
-  void findAll_ShouldReturn_CollectionWithCarDto(){
+  void findAll_ShouldReturn_CollectionWithFirstDto(){
     Assertions.assertTrue(secondService.findAll().isEmpty());
     secondService.createAll(getCollectionOfWorkerDto());
     Collection<SecondDto> foundSecondDto = secondService.findAll();

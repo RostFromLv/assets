@@ -28,5 +28,5 @@ public class SecondDto extends SoftDeleteEntity {
   private Float age;
 
   @NonNull
-  private Long carId;
+  private Long firstId;
 }

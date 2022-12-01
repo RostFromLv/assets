@@ -24,7 +24,7 @@ import org.hibernate.annotations.SQLDelete;
  */
 @Data
 @Table(name = "first_s")
-@Entity(name = "first_s")
+@Entity
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor

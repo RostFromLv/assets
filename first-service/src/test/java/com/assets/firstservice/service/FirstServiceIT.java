@@ -37,7 +37,7 @@ public class FirstServiceIT extends AbstractTest {
 
   //create
   @Test
-  void create_shouldCreateCar_andReturn_createdCarDto(){
+  void create_shouldCreateFirst_andReturn_createdFirstDto(){
      FirstDto createdFirstDto =  firstService.create(anotherFirstDto);
 
      assertNotNull(createdFirstDto);
@@ -46,15 +46,15 @@ public class FirstServiceIT extends AbstractTest {
   }
   //createAll
   @Test
-  void createAll_shouldCreateCars_andReturn_carCollection(){
+  void createAll_shouldCreateFirsts_andReturn_FirstCollection(){
     Assertions.assertTrue(firstService.findAll().isEmpty());
-    Collection<FirstDto> collectionOfCreatedCar = firstService.createAll(getCollectionOfCarDto());
-    assertFalse(collectionOfCreatedCar.isEmpty());
+    Collection<FirstDto> collectionOfCreatedFirst = firstService.createAll(getCollectionOfFirstDto());
+    assertFalse(collectionOfCreatedFirst.isEmpty());
     Assertions.assertFalse(firstService.findAll().isEmpty());
   }
   //update
   @Test
-  void update_shouldUpdateCar_AndReturnUpdatedCarDto(){
+  void update_shouldUpdateFirst_AndReturnUpdatedFirstDto(){
     FirstDto createdFirstDto = firstService.create(anotherFirstDto);
     assertNotNull(createdFirstDto);
     firstDto.setId(createdFirstDto.getId());
@@ -71,7 +71,7 @@ public class FirstServiceIT extends AbstractTest {
   }
   //findById
   @Test
-  void  findById_ShouldReturn_existCarDto(){
+  void  findById_ShouldReturn_existFirstDto(){
     FirstDto createdFirstDto = firstService.create(anotherFirstDto);
     assertNotNull(createdFirstDto);
 
@@ -89,9 +89,9 @@ public class FirstServiceIT extends AbstractTest {
   }
   //findAll
   @Test
-  void findAll_ShouldReturn_CollectionWithCarDto(){
+  void findAll_ShouldReturn_CollectionWithFirstDto(){
     Assertions.assertTrue(firstService.findAll().isEmpty());
-    firstService.createAll(getCollectionOfCarDto());
+    firstService.createAll(getCollectionOfFirstDto());
     Collection<FirstDto> foundFirstDto = firstService.findAll();
 
     assertNotNull(foundFirstDto);
@@ -115,7 +115,7 @@ public class FirstServiceIT extends AbstractTest {
   //DeleteAll
   @Test
   void deleteAll_ShouldDelete_AllEntity(){
-    Collection<FirstDto> createdFirstDto = firstService.createAll(getCollectionOfCarDto());
+    Collection<FirstDto> createdFirstDto = firstService.createAll(getCollectionOfFirstDto());
     assertNotNull(createdFirstDto);
     assertFalse(createdFirstDto.isEmpty());
     assertTrue(createdFirstDto.size()>1);

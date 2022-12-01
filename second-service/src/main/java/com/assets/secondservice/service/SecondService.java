@@ -23,5 +23,5 @@ public interface SecondService extends AbstractService<SecondDto, Long> {
 
   boolean existById(Long id);
 
-  Collection<SecondDto> getByCarId(Long carId);
+  Collection<SecondDto> getByFirstId(Long firstId);
 }

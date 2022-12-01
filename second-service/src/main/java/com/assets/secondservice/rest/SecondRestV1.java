@@ -53,19 +53,19 @@ public class SecondRestV1 {
   }
 
   @DeleteMapping("/{id}")
-  @ResponseStatus(value = HttpStatus.NO_CONTENT)
-  public void deleteById(@PathVariable Long id) {
+  public ResponseEntity<Void> deleteById(@PathVariable Long id) {
     secondService.deleteById(id);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   @DeleteMapping
-  @ResponseStatus(value = HttpStatus.NO_CONTENT)
-  public void deleteAll() {
+  public ResponseEntity<Void> deleteAll() {
     secondService.deleteAll();
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
-  @GetMapping("/first/{carId}")
-  public  ResponseEntity<Collection<SecondDto>> getByCarId(@PathVariable Long carId) {
-    return new ResponseEntity<>(secondService.getByCarId(carId),HttpStatus.OK);
+  @GetMapping("/first/{firstId}")
+  public  ResponseEntity<Collection<SecondDto>> getByFirstId(@PathVariable Long firstId) {
+    return new ResponseEntity<>(secondService.getByFirstId(firstId),HttpStatus.OK);
   }
 }

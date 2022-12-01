@@ -1,9 +1,9 @@
 package com.assets.service;
 
-import com.assets.domain.Car;
+import com.assets.commondb.domain.First;
 import com.assets.mapper.AbstractMapper;
-import com.assets.mapper.CarMapper;
 import com.assets.commondtos.models.FirstDto;
+import com.assets.mapper.FirstMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,6 +28,6 @@ import org.springframework.stereotype.Service;
  * @see AbstractMapper
  */
 @Service
-public class CarServiceImpl extends AbstractServiceImpl<Car, FirstDto, Long, CarMapper, CarRepository>
-    implements CarService {
+public class FirstServiceImpl extends AbstractServiceImpl<First, FirstDto, Long, FirstMapper, FirstRepository>
+    implements FirstService {
 }

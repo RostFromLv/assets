@@ -85,10 +85,10 @@ public class SecondRestV1Test extends AbstractTest {
 
   //findById
   @Test
-  void findById_ShouldReturnCarDto_and_Status200() {
+  void findById_ShouldReturnFirstDto_and_Status200() {
     SecondDto createdSecondDto = secondService.create(anotherSecondDto);
     assertNotNull(createdSecondDto);
-    SecondDto foundCarDto = request().
+    SecondDto foundFirstDto = request().
         when()
         .get("/" + createdSecondDto.getId())
         .then()
@@ -96,7 +96,7 @@ public class SecondRestV1Test extends AbstractTest {
         .extract()
         .as(SecondDto.class);
 
-    Assertions.assertEquals(createdSecondDto, foundCarDto);
+    Assertions.assertEquals(createdSecondDto, foundFirstDto);
   }
 
   @Test
@@ -148,7 +148,7 @@ public class SecondRestV1Test extends AbstractTest {
 
     createdSecondDto.setName(updatedName);
 
-    SecondDto updatedCarDto = requestJson()
+    SecondDto updatedFirstDto = requestJson()
         .body(createdSecondDto)
         .when()
         .post()
@@ -158,12 +158,12 @@ public class SecondRestV1Test extends AbstractTest {
         .as(SecondDto.class);
     assertNotNull(updatedName);
 
-    Assertions.assertEquals(updatedName, updatedCarDto.getName());
+    Assertions.assertEquals(updatedName, updatedFirstDto.getName());
   }
 
   //delete
   @Test
-  void deleteById_ShouldReturn_Status200() {
+  void deleteById_ShouldReturn_Status204() {
     SecondDto createdSecondDto = secondService.create(anotherSecondDto);
     assertNotNull(secondService.findById(createdSecondDto.getId()));
 

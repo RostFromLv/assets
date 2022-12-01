@@ -13,8 +13,8 @@ public class AbstractTest {
   protected final Float sAge = 20F;
   protected final String name = "Roman";
   protected final String sName = "Rostik";
-  protected final Long carId = 1l;
-  protected final Long sCarId = 5l;
+  protected final Long firstId = 1l;
+  protected final Long sFirstId = 5l;
   protected final String anotherName = "Peter";
 
 
@@ -22,53 +22,53 @@ public class AbstractTest {
       .id(id)
       .age(age)
       .name(name)
-      .carId(carId).build();
+      .firstId(firstId).build();
 
   protected final Second secondEntity = Second.builder()
       .id(id)
       .age(sAge)
       .name(sName)
-      .carId(sCarId).build();
+      .firstId(sFirstId).build();
 
   protected final SecondDto secondSecondDto = SecondDto.builder()
       .id(sId)
       .age(sAge)
       .name(sName)
-      .carId(sCarId).build();
+      .firstId(sFirstId).build();
 
   protected final Second secondSecondEntity = Second.builder()
       .id(sId)
       .age(sAge)
       .name(sName)
-      .carId(sCarId).build();
+      .firstId(sFirstId).build();
 
   protected final SecondDto anotherSecondDto = SecondDto.builder()
       .id(sId)
       .age(sAge)
       .name(anotherName)
-      .carId(carId).build();
+      .firstId(firstId).build();
   protected final Second anotherSecond = Second.builder()
       .id(null)
       .age(age)
       .name(sName)
-      .carId(carId).build();
+      .firstId(firstId).build();
 
   protected SecondDto getWorkerDtoWithNullName() {
     secondDto.setName(null);
     return secondDto;
   }
 
-  protected SecondDto getCarDtoWithNullId() {
+  protected SecondDto getFirstDtoWithNullId() {
     secondDto.setId(null);
     return secondDto;
   }
 
-  protected Second getCarWithNullId() {
+  protected Second getFirstWithNullId() {
     secondEntity.setId(null);
     return secondEntity;
   }
 
-  protected Second getCarWithNullBrand() {
+  protected Second getFirstWithNullBrand() {
     secondEntity.setName(null);
     return secondEntity;
   }

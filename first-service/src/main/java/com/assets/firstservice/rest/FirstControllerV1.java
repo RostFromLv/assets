@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -56,14 +55,15 @@ public class FirstControllerV1 {
   }
 
   @DeleteMapping("/{id}")
-  public void deleteById(@PathVariable Long id) {
+  public ResponseEntity<Void> deleteById(@PathVariable Long id) {
     firstService.deleteById(id);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   @DeleteMapping
-  @ResponseStatus(value = HttpStatus.NO_CONTENT)
-  public void deleteAll() {
+  public ResponseEntity<Void> deleteAll() {
     firstService.deleteAll();
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
 }

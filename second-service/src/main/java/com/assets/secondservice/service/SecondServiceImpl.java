@@ -20,7 +20,7 @@ public class SecondServiceImpl
   private final SecondRepository secondRepository;
   private final SecondMapper secondMapper;
 
-  private final static String carIdCannotExistMessage = "Car id doesnt exist: %s";
+  private final static String firstIdCannotExistMessage = "First id doesnt exist: %s";
 
   @Autowired
   public SecondServiceImpl(FirstFeignClient firstFeignClient,
@@ -33,10 +33,10 @@ public class SecondServiceImpl
 
   @Override
   @Transactional
-  public Collection<SecondDto> getByCarId(Long carId) {
-    Assert.notNull(firstFeignClient.foundById(carId),String.format(carIdCannotExistMessage,carId));
+  public Collection<SecondDto> getByFirstId(Long firstId) {
+    Assert.notNull(firstFeignClient.foundById(firstId),String.format(firstIdCannotExistMessage,firstId));
 
-    return secondRepository.findAllByCarId(carId).stream().map(secondMapper::toDto).collect(
+    return secondRepository.findAllByFirstId(firstId).stream().map(secondMapper::toDto).collect(
         Collectors.toSet());
   }
 }

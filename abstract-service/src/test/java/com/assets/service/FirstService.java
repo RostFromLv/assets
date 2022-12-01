@@ -11,7 +11,7 @@ import java.util.Collection;
  * @author Rosyslav Balushchak
  * @since 1.0.0-SNAPSHOT
  */
-public interface CarService extends AbstractService<FirstDto,Long>{
+public interface FirstService extends AbstractService<FirstDto,Long>{
 
   FirstDto create(final FirstDto dto);
 

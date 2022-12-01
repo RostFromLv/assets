@@ -50,31 +50,31 @@ public class AbstractTest {
       .bodyType(secondBodyType)
       .wheelRadius(wheelRadius).build();
 
-  protected FirstDto getCarDtoWithNullBrand(){
+  protected FirstDto getFirstDtoWithNullBrand(){
     firstDto.setBrand(null);
     return firstDto;
   }
-  protected FirstDto getCarDtoWithNullId(){
+  protected FirstDto getFirstDtoWithNullId(){
     firstDto.setId(null);
     return firstDto;
   }
-  protected First getCarWithNullId(){
+  protected First getFirstWithNullId(){
     firstEntity.setId(null);
     return firstEntity;
   }
-  protected First getCarWithNullBrand(){
+  protected First getFirstWithNullBrand(){
     firstEntity.setBrand(null);
     return firstEntity;
   }
 
-  protected Collection<FirstDto> getCollectionOfCarDto(){
+  protected Collection<FirstDto> getCollectionOfFirstDto(){
     Collection<FirstDto> expected = new HashSet<>();
     expected.add(firstDto);
     expected.add(secondFirstDto);
     return expected;
   }
 
-  protected Collection<First> getCollectionOfCarEntity(){
+  protected Collection<First> getCollectionOfFirstEntity(){
     Collection<First> expected = new HashSet<>();
     expected.add(firstEntity);
     expected.add(secondFirstEntity);

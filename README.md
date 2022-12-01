@@ -8,6 +8,7 @@ mvn clean install all modules by next order:
 
 <ul>
 <li>asset-bom</li>
+<li>common-db</li>
 <li>common-dtos</li>
 <li>exception-handler</li>
 <li>abstract-service</li>

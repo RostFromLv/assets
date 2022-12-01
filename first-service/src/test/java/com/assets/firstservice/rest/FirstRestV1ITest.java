@@ -68,7 +68,7 @@ public class FirstRestV1ITest extends AbstractTest {
   @Test
   void createAll_ShouldReturn_CollectionOfDto_and_Status201() {
     Collection createdCars = requestJson()
-        .body(getCollectionOfCarDto())
+        .body(getCollectionOfFirstDto())
         .when()
         .post("/create/all")
         .then()
@@ -109,7 +109,7 @@ public class FirstRestV1ITest extends AbstractTest {
   //find all
   @Test
   void findAll_ShouldReturn_CollectionOfExistDto_and_Status200() {
-    firstService.createAll(getCollectionOfCarDto());
+    firstService.createAll(getCollectionOfFirstDto());
     Assertions.assertFalse(firstService.findAll().isEmpty());
 
     Collection foundCars = request()
@@ -177,7 +177,7 @@ public class FirstRestV1ITest extends AbstractTest {
   //delete all
   @Test
   void deleteAll_ShouldReturn_Status200() {
-    firstService.createAll(getCollectionOfCarDto());
+    firstService.createAll(getCollectionOfFirstDto());
     Assertions.assertFalse(firstService.findAll().isEmpty());
 
     request().when()
