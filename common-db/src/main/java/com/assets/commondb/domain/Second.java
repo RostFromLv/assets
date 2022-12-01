@@ -1,6 +1,5 @@
-package com.assets.firstservice.domain;
+package com.assets.commondb.domain;
 
-import com.example.commondtos.domain.SoftDeleteEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,34 +13,27 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
 
-/**
- * It is a simple example of a regular entity that is ready for use.
- * <p>
- * In this case we use softDelete and timeEntity for time and deleting audits.
- *
- * @author Rosyslav Balushchak
- * @see SoftDeleteEntity
- * @since 1.0.0-SNAPSHOT
- */
 @Data
-@Table(name = "cars")
-@Entity(name = "cars")
+@Table(name = "second_s")
+@Entity(name = "second_s")
 @SuperBuilder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@SQLDelete(sql = "UPDATE  cars SET  deleted = true Where id =?")
-public class First extends SoftDeleteEntity {
+@SQLDelete(sql = "UPDATE  second_s SET  deleted = true Where id =?")
+public class Second extends SoftDeleteEntity {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column
-  private String brand;
+  private String name;
 
   @Column
-  private String bodyType;
+  private Float age;
 
   @Column
-  private Double wheelRadius;
+  private long carId;
+
 }

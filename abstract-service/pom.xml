@@ -9,7 +9,6 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
-<!--Can I call this jar abstract-service-starter  ?-->
 
     <artifactId>abstract-service</artifactId>
     <version>1.0.0-SNAPSHOT</version>

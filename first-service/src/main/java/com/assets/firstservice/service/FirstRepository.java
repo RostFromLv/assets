@@ -1,14 +1,13 @@
 package com.assets.firstservice.service;
 
 
-import com.assets.firstservice.domain.First;
+import com.assets.commondb.domain.First;
 import java.util.List;
 import java.util.Optional;
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Customized repository.
@@ -22,28 +21,21 @@ public interface FirstRepository extends JpaRepository<First, Long> {
 
   @NonNull
   @Override
-  @Transactional(readOnly = true)
-  @Query(nativeQuery = true,
-      value = "select * from cars where cars.deleted = false  and cars.id = :id ")
+  @Query(value = "SELECT f FROM first_s f WHERE f.deleted = false  AND f.id= ?1")
   Optional<First> findById(@NonNull Long id);
 
   @NonNull
   @Override
-  @Query(nativeQuery = true
-      , value = "select  * from cars where cars.deleted = false")
-  @Transactional(readOnly = true)
+  @Query(value = "SELECT f FROM first_s  f WHERE f.deleted = false")
   List<First> findAll();
 
   @NonNull
-  @Query(nativeQuery = true,
-      value = "select * from  cars")
-  @Transactional(readOnly = true)
+  @Query(value = "SELECT f FROM first_s f")
   List<First> findAllCars();
 
   @Override
-  @Transactional(readOnly = true)
-  @Query(nativeQuery = true,
-      value = "select case when exists(select  * from cars where cars.id = :id and cars.deleted = false) " +
-          "THEN CAST(1 as BIT) ELSE CAST(0 AS BIT) END")
-  boolean existsById(Long id);
+  @Query(value = "SELECT CASE WHEN COUNT(f)>0 AND f.deleted = false AND f.id =?1 then  true  else false end from first_s f ")
+
+  boolean existsById(@NonNull Long id);
+
 }

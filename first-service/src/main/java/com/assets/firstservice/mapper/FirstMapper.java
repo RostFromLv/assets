@@ -1,8 +1,8 @@
 package com.assets.firstservice.mapper;
 
+import com.assets.commondb.domain.First;
 import com.assets.mapper.AbstractMapper;
-import com.example.commondtos.models.FirstDto;
-import com.assets.firstservice.domain.First;
+import com.assets.commondtos.models.FirstDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

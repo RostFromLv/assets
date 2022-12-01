@@ -1,10 +1,11 @@
 package com.assets.secondservice.rest;
 
 import com.assets.secondservice.service.SecondService;
-import com.example.commondtos.models.SecondDto;
+import com.assets.commondtos.models.SecondDto;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/workers")
+@RequestMapping("/api/v1/second")
 public class SecondRestV1 {
   private final SecondService secondService;
 
@@ -26,34 +27,29 @@ public class SecondRestV1 {
   }
 
   @PostMapping
-  @ResponseStatus(value = HttpStatus.CREATED)
-  public SecondDto create(@RequestBody SecondDto secondDto) {
-    return secondService.create(secondDto);
+  public ResponseEntity<SecondDto> create(@RequestBody SecondDto secondDto) {
+    return new ResponseEntity<>(secondService.create(secondDto),HttpStatus.CREATED);
   }
 
   @PostMapping("/create/all")
-  @ResponseStatus(value = HttpStatus.CREATED)
-  public Collection<SecondDto> createAll(@RequestBody Collection<SecondDto> workerCOllectins) {
-    return secondService.createAll(workerCOllectins);
+  public ResponseEntity<Collection<SecondDto>> createAll(@RequestBody Collection<SecondDto> workerCOllectins) {
+    return new ResponseEntity<>(secondService.createAll(workerCOllectins),HttpStatus.CREATED);
   }
 
   @PutMapping
-  @ResponseStatus(value = HttpStatus.OK)
-  public SecondDto update(@RequestBody SecondDto secondDto) {
+  public ResponseEntity<SecondDto> update(@RequestBody SecondDto secondDto) {
     Long id = secondDto.getId();
-    return secondService.update(secondDto, id);
+    return new ResponseEntity<>(secondService.update(secondDto, id),HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  @ResponseStatus(value = HttpStatus.OK)
-  public SecondDto findById(@PathVariable Long id) {
-    return secondService.findById(id);
+  public ResponseEntity<SecondDto> findById(@PathVariable Long id) {
+    return new ResponseEntity<>(secondService.findById(id),HttpStatus.OK);
   }
 
   @GetMapping
-  @ResponseStatus(value = HttpStatus.OK)
-  public Collection<SecondDto> findAll() {
-    return secondService.findAll();
+  public ResponseEntity<Collection<SecondDto>> findAll() {
+    return new ResponseEntity<>(secondService.findAll(),HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
@@ -68,9 +64,8 @@ public class SecondRestV1 {
     secondService.deleteAll();
   }
 
-  @GetMapping("/car/{carId}")
-  @ResponseStatus(value = HttpStatus.OK)
-  public  Collection<SecondDto> getByCarId(@PathVariable Long carId) {
-    return secondService.getByCarId(carId);
+  @GetMapping("/first/{carId}")
+  public  ResponseEntity<Collection<SecondDto>> getByCarId(@PathVariable Long carId) {
+    return new ResponseEntity<>(secondService.getByCarId(carId),HttpStatus.OK);
   }
 }

@@ -1,7 +1,7 @@
 package com.assets.secondservice;
 
-import com.assets.secondservice.domain.Second;
-import com.example.commondtos.models.SecondDto;
+import com.assets.commondb.domain.Second;
+import com.assets.commondtos.models.SecondDto;
 import java.util.Collection;
 import java.util.HashSet;
 

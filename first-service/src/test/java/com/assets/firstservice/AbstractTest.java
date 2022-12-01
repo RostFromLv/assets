@@ -1,7 +1,7 @@
 package com.assets.firstservice;
 
-import com.assets.firstservice.domain.First;
-import com.example.commondtos.models.FirstDto;
+import com.assets.commondb.domain.First;
+import com.assets.commondtos.models.FirstDto;
 import java.util.Collection;
 import java.util.HashSet;
 

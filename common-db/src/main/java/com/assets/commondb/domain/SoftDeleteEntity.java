@@ -1,4 +1,4 @@
-package com.example.commondtos.domain;
+package com.assets.commondb.domain;
 
 import javax.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;

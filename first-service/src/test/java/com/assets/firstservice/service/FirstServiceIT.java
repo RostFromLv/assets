@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.example.commondtos.models.FirstDto;
+import com.assets.commondtos.models.FirstDto;
 import com.assets.firstservice.AbstractTest;
 import java.util.Collection;
 import javax.persistence.EntityNotFoundException;

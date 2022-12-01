@@ -18,7 +18,6 @@
         <lombok-mapstruct.binding.version>0.2.0</lombok-mapstruct.binding.version>
         <spring-cloud.dependency.version>2021.0.3</spring-cloud.dependency.version>
         <spring-cloud.loadbalancer.version>3.1.5</spring-cloud.loadbalancer.version>
-        <exception.handler.version>1.0.0-SNAPSHOT</exception.handler.version>
         <abstract-service.version>1.0.0-SNAPSHOT</abstract-service.version>
     </properties>
 
@@ -34,9 +33,13 @@
         </dependencies>
     </dependencyManagement>
 
-
     <dependencies>
 <!--Custom-->
+        <dependency>
+            <groupId>com.assets</groupId>
+            <artifactId>common-dtos</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.assets</groupId>
             <artifactId>abstract-service</artifactId>
@@ -48,12 +51,24 @@
             <version>${exception.handler.version}</version>
         </dependency>
 
+<!--Cloud-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
 
-<!--Spring Cloud-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
             <version>${spring-cloud.loadbalancer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -69,6 +84,7 @@
             <version>2.2.8.RELEASE</version>
         </dependency>
 <!--Spring-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -161,11 +177,7 @@
                             <artifactId>mapstruct-processor</artifactId>
                             <version>${mapstruct.version}</version>
                         </path>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
+
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok-mapstruct-binding</artifactId>
