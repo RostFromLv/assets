@@ -23,5 +23,6 @@
         <module>gateway-service</module>
         <module>first-service</module>
         <module>second-service</module>
+        <module>configuration-server</module>
     </modules>
 </project>
