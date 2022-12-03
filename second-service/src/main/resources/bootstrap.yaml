@@ -1,8 +1,4 @@
 spring:
   application:
     name: second-service
-  config:
-    import: "optional:configserver:"
-  cloud:
-    config:
-      uri: ${CONFIG_SERVICE:http://localhost:8889}
+
