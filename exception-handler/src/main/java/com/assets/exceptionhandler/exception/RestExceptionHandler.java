@@ -73,7 +73,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     ValidationException validationException = new ValidationException();
     validationException.setValidationException(validationFieldErrorList);
     validationException.setTimestamp(LocalDateTime.now());
-    validationException.setCode(status.value());
+    validationException.setStatus(status);
     validationException.setMessage(ex.getMessage());
     return new ResponseEntity<>(validationException, new HttpHeaders(), HttpStatus.BAD_REQUEST);
   }
@@ -87,7 +87,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
       WebRequest request) {
 
     Exception exception = new Exception();
-    exception.setCode(status.value());
+    exception.setStatus(status);
     exception.setTimestamp(LocalDateTime.now());
     exception.setMessage(ex.getMessage());
 
