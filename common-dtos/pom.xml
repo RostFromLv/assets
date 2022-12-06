@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.assets</groupId>
+        <artifactId>asset-bom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>common-dtos</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>common-dtos</name>
+
+    <properties>
+        <lombok-mapstruct.binding.version>0.2.0</lombok-mapstruct.binding.version>
+        <common.db-version>1.0.0-SNAPSHOT</common.db-version>
+    </properties>
+
+    <dependencies>
+<!--        Custom-->
+        <dependency>
+            <groupId>com.assets</groupId>
+            <artifactId>common-db</artifactId>
+            <version>${common.db-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.checkerframework</groupId>
+            <artifactId>checker-qual</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

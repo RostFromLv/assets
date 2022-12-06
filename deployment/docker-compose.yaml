@@ -1,0 +1,80 @@
+version: '3.0'
+
+services:
+  #Zipkin
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mem
+    ports:
+      - '9411:9411'
+    networks:
+      - spring-network
+  #  Postgres
+  postgres:
+    container_name: postgresql
+    restart: always
+    image: postgres:13.6
+    ports:
+      - "5432:5432"
+    networks:
+      - spring-network
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    depends_on:
+      - zipkin
+  # GATEWAY
+  gateway:
+    container_name: gateway
+    build:
+      context: ../gateway-service
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      ZIPKIN_HOST: http://zipkin:9411
+      FIRST_SERVICE: http://first-service:8080
+      SECOND_SERVICE: http://second-service:8081
+    depends_on:
+        zipkin:
+         condition: service_healthy
+    networks:
+      - spring-network
+  #  First-service
+  first-service:
+    container_name: first-service
+    build:
+      context: ../first-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/first_service
+    restart: on-failure
+    depends_on:
+      - "gateway"
+    networks:
+      - spring-network
+# Second-service
+  second-service:
+    container_name: second-service
+    build:
+      context: ../second-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/second_service
+      FIRST_SERVICE: http://first-service:8080
+    depends_on:
+      - "first-service"
+    networks:
+      - spring-network
+    restart: on-failure
+networks:
+  spring-network:
+    driver: bridge
