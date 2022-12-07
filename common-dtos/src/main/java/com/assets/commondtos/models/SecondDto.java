@@ -1,6 +1,5 @@
 package com.assets.commondtos.models;
 
-import com.assets.commondb.domain.SoftDeleteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +15,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SecondDto extends SoftDeleteEntity {
+public class SecondDto extends SoftDeleteDto {
 
   @Nullable
   private Long id;

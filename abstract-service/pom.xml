@@ -20,6 +20,7 @@
         <lombok-mapstruct.binding.version>0.2.0</lombok-mapstruct.binding.version>
         <spring.cloud-version>2021.0.1</spring.cloud-version>
         <common.dtos.version>1.0.0-SNAPSHOT</common.dtos.version>
+        <common.db.version>1.0.0-SNAPSHOT</common.db.version>
     </properties>
 
     <dependencies>
@@ -28,6 +29,11 @@
             <groupId>com.assets</groupId>
             <artifactId>common-dtos</artifactId>
             <version>${common.dtos.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.assets</groupId>
+            <artifactId>common-db</artifactId>
+            <version>${common.db.version}</version>
         </dependency>
 <!--        Third-party-->
         <dependency>

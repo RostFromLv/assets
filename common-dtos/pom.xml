@@ -15,16 +15,9 @@
 
     <properties>
         <lombok-mapstruct.binding.version>0.2.0</lombok-mapstruct.binding.version>
-        <common.db-version>1.0.0-SNAPSHOT</common.db-version>
     </properties>
 
     <dependencies>
-<!--        Custom-->
-        <dependency>
-            <groupId>com.assets</groupId>
-            <artifactId>common-db</artifactId>
-            <version>${common.db-version}</version>
-        </dependency>
         <dependency>
             <groupId>org.checkerframework</groupId>
             <artifactId>checker-qual</artifactId>
