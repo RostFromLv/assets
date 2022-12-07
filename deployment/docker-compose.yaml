@@ -14,19 +14,20 @@ services:
   #  Postgres
   postgres:
     container_name: postgresql
-    restart: always
     image: postgres:13.6
+    build:
+      context: ./dependencies/postgres
+      dockerfile: Dockerfile
     ports:
       - "5432:5432"
     networks:
       - spring-network
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
     depends_on:
       - zipkin
+    restart: on-failure
   # GATEWAY
   gateway:
     container_name: gateway
@@ -53,7 +54,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/first_service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/assets
     restart: on-failure
     depends_on:
       - "gateway"
@@ -68,7 +69,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/second_service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/assets
       FIRST_SERVICE: http://first-service:8080
     depends_on:
       - "first-service"
