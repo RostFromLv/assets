@@ -51,10 +51,13 @@ private final   UserService userService;
     userService.deleteById(id);
     return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
-
   @DeleteMapping
   public ResponseEntity<Void> deleteAll(){
     userService.deleteAll();
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+  @GetMapping("/hello")
+  public ResponseEntity<String> getHello(){
+    return new ResponseEntity<>("Hi,dude",HttpStatus.OK);
   }
 }

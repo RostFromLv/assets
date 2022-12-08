@@ -6,7 +6,6 @@ create table users
     email      VARCHAR(63) UNIQUE NOT NULL,
     password   VARCHAR(64)        NOT NULL,
     deleted    boolean   DEFAULT false,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT UQ_users_name_lastName UNIQUE (name, last_name)
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now()
 );
