@@ -45,11 +45,6 @@
         </dependency>
         <dependency>
             <groupId>com.assets</groupId>
-            <artifactId>common-db</artifactId>
-            <version>${common.db-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.assets</groupId>
             <artifactId>abstract-service</artifactId>
             <version>${abstract-service.version}</version>
         </dependency>
@@ -86,8 +81,9 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-
 <!--        Spring-->
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
