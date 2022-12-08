@@ -38,8 +38,6 @@ spring:
     init:
       data-locations: classpath:db/initialization/data.sql
       mode: always
-      continue-on-error: true
-
 
 # Actuator properties
 management:
