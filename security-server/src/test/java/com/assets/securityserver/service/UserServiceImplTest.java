@@ -6,9 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.assets.commondb.domain.RoleName;
+import com.assets.commondtos.models.RoleDto;
 import com.assets.commondtos.models.UserDto;
-import com.assets.securityserver.AbstractTest;
+import com.assets.securityserver.UserTestData;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,43 +25,54 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 @ActiveProfiles("test")
 @SuppressWarnings(value = "argument")
-public class UserServiceImplTest extends AbstractTest {
+public class UserServiceImplTest extends UserTestData {
 
   private final UserRepository userRepository;
+  private final RoleRepository roleRepository;
   private final UserService userService;
 
   @Autowired
-  public UserServiceImplTest(UserRepository userRepository, UserService userService) {
+  public UserServiceImplTest(UserRepository userRepository,
+                             RoleRepository roleRepository,
+                             UserService userService) {
     this.userRepository = userRepository;
+    this.roleRepository = roleRepository;
     this.userService = userService;
   }
 
   @BeforeEach
-  void beforeEach(){
+  void beforeEach() {
     userRepository.deleteAll();
+    roleRepository.deleteAll();
   }
 
   //create
   @Test
-  void create_shouldCreateUser_andReturn_createdUserDto(){
-    UserDto createdUserDto =  userService.create(anotherUserDto);
+  void create_shouldCreateUser_andReturn_createdUserDto() {
+
+    UserDto createdUserDto = userService.create(userDto);
 
     assertNotNull(createdUserDto);
     assertNotNull(createdUserDto.getId());
     Assertions.assertTrue(userRepository.existsById(createdUserDto.getId()));
   }
-//  createAll
+
+  //  createAll
   @Test
-  void createAll_shouldCreateUsers_andReturn_UserCollection(){
+  void createAll_shouldCreateUsers_andReturn_UserCollection() {
+
     Assertions.assertTrue(userService.findAll().isEmpty());
-    Collection<UserDto> collectionOfCreatedUsersDto = userService.createAll(getCollectionOfUsersDto());
+    Collection<UserDto> collectionOfCreatedUsersDto =
+        userService.createAll(getCollectionOfUsersDto());
+
     assertFalse(collectionOfCreatedUsersDto.isEmpty());
     Assertions.assertFalse(userService.findAll().isEmpty());
   }
+
   //update
   @Test
-  void update_shouldUpdateUser_AndReturnUpdatedUserDto(){
-    UserDto createdUserDto = userService.create(anotherUserDto);
+  void update_shouldUpdateUser_AndReturnUpdatedUserDto() {
+    UserDto createdUserDto = userService.create(userDto);
 
     assertNotNull(createdUserDto);
 
@@ -65,13 +81,15 @@ public class UserServiceImplTest extends AbstractTest {
 
     assertThat(createdUserDto)
         .usingRecursiveComparison()
-        .ignoringFields("id","createdAt","updatedAt")
+        .ignoringFields("id", "createdAt", "updatedAt")
         .isEqualTo(updatedDto);
   }
-//  //findById
+
+  //  //findById
   @Test
-  void  findById_ShouldReturn_existUserDto(){
-    UserDto createdUserDto = userService.create(anotherUserDto);
+  void findById_ShouldReturn_existUserDto() {
+
+    UserDto createdUserDto = userService.create(secondUserDto);
     assertNotNull(createdUserDto);
 
     UserDto foundUserDto = userService.findById(createdUserDto.getId());
@@ -79,16 +97,19 @@ public class UserServiceImplTest extends AbstractTest {
 
     assertThat(createdUserDto)
         .usingRecursiveComparison()
-        .ignoringFields("id","createdAt","updatedAt")
+        .ignoringFields("id", "createdAt", "updatedAt")
         .isEqualTo(foundUserDto);
   }
+
   @Test
-  void findById_ShouldThrow_EntityNotFoundException(){
-    assertThrows(EntityNotFoundException.class,()-> userService.findById(1L));
+  void findById_ShouldThrow_EntityNotFoundException() {
+    assertThrows(EntityNotFoundException.class, () -> userService.findById(1L));
   }
+
   //findAll
   @Test
-  void findAll_ShouldReturn_CollectionWithUserDto(){
+  void findAll_ShouldReturn_CollectionWithUserDto() {
+
     Assertions.assertTrue(userService.findAll().isEmpty());
     userService.createAll(getCollectionOfUsersDto());
     Collection<UserDto> foundUserDto = userService.findAll();
@@ -97,38 +118,49 @@ public class UserServiceImplTest extends AbstractTest {
     assertFalse(foundUserDto.isEmpty());
 
   }
+
   @Test
-  void findAll_ShouldReturn_EmptyCollection(){
+  void findAll_ShouldReturn_EmptyCollection() {
     Assertions.assertTrue(userService.findAll().isEmpty());
   }
+
   //deleteById
   @Test
-  void deleteById_ShouldDeleteEntityWithGivenId(){
-    UserDto createdUserDto = userService.create(anotherUserDto);
+  void deleteById_ShouldDeleteEntityWithGivenId() {
+
+    UserDto createdUserDto = userService.create(userDto);
+
     assertNotNull(createdUserDto);
     userService.deleteById(createdUserDto.getId());
     Assertions.assertFalse(userService.existById(createdUserDto.getId()));
   }
+
   //DeleteAll
   @Test
-  void deleteAll_ShouldDelete_AllEntity(){
+  void deleteAll_ShouldDelete_AllEntity() {
+
     Collection<UserDto> createdUserDto = userService.createAll(getCollectionOfUsersDto());
     assertNotNull(createdUserDto);
     assertFalse(createdUserDto.isEmpty());
-    assertTrue(createdUserDto.size()>1);
+    assertTrue(createdUserDto.size() > 1);
     userService.deleteAll();
     Assertions.assertTrue(userService.findAll().isEmpty());
   }
+
   //existById
   @Test
-  void existById_ShouldReturnFalse(){
+  void existById_ShouldReturnFalse() {
     Assertions.assertFalse(userService.existById(1L));
   }
+
   @Test
-  void existById_ShouldReturnTrue(){
-    UserDto UserDto = userService.create(anotherUserDto);
-    assertNotNull(UserDto);
-    Assertions.assertTrue(userService.existById(UserDto.getId()));
+  void existById_ShouldReturnTrue() {
+
+    UserDto createdUserDto = userService.create(userDto);
+
+    assertNotNull(createdUserDto);
+    Assertions.assertTrue(userService.existById(createdUserDto.getId()));
   }
+
 }
 

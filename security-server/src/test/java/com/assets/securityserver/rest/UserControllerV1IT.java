@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.assets.commondtos.models.UserDto;
-import com.assets.securityserver.AbstractTest;
+import com.assets.securityserver.UserTestData;
 import com.assets.securityserver.service.UserRepository;
 import com.assets.securityserver.service.UserService;
 import io.restassured.RestAssured;
@@ -17,14 +17,19 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class,
+    ManagementWebSecurityAutoConfiguration.class})
 @SuppressWarnings(value = "argument") // For testing cases
-public class SecurityRestV1IT extends AbstractTest {
+public class UserControllerV1IT extends UserTestData {
 
   private final UserRepository userRepository;
   private final UserService userService;
@@ -33,8 +38,8 @@ public class SecurityRestV1IT extends AbstractTest {
   private int port;
 
   @Autowired
-  public SecurityRestV1IT(UserRepository userRepository,
-                          UserService userService) {
+  public UserControllerV1IT(UserRepository userRepository,
+                            UserService userService) {
     this.userRepository = userRepository;
     this.userService = userService;
   }
@@ -50,8 +55,9 @@ public class SecurityRestV1IT extends AbstractTest {
   //create
   @Test
   void createByCorrectDto_ShouldReturn_CreatedDto_and_Status201() {
+
     UserDto createdUserDto = requestJson()
-        .body(anotherUserDto)
+        .body(secondUserDto)
         .when()
         .post()
         .then()
@@ -61,7 +67,7 @@ public class SecurityRestV1IT extends AbstractTest {
 
    assertThat(createdUserDto).usingRecursiveComparison()
         .ignoringFields("id", "createdAt", "updatedAt")
-        .isEqualTo(anotherUserDto);
+        .isEqualTo(secondUserDto);
   }
 
   //createAll
@@ -83,7 +89,7 @@ public class SecurityRestV1IT extends AbstractTest {
   //findById
   @Test
   void findById_ShouldReturnUserDto_and_Status200() {
-    UserDto createdUserDto = userService.create(anotherUserDto);
+    UserDto createdUserDto = userService.create(userDto);
     assertNotNull(createdUserDto);
     UserDto foundUserDto = request().
         when()
@@ -140,7 +146,7 @@ public class SecurityRestV1IT extends AbstractTest {
   void updateByCorrectDto_shouldReturn_updatedDto_and_Status200() {
     String updatedName = "AnotherName";
 
-    UserDto createdUserDto = userService.create(anotherUserDto);
+    UserDto createdUserDto = userService.create(secondUserDto);
     assertNotNull(createdUserDto);
 
     createdUserDto.setName(updatedName);
@@ -162,7 +168,7 @@ public class SecurityRestV1IT extends AbstractTest {
   //delete
   @Test
   void deleteById_ShouldReturn_Status200() {
-    UserDto createdUserDto = userService.create(anotherUserDto);
+    UserDto createdUserDto = userService.create(userDto);
     assertNotNull(userService.findById(createdUserDto.getId()));
 
     request().when()

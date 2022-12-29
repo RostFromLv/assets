@@ -18,46 +18,54 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/user")
 
-public class UserRestV1 {
+public class UserControllerV1 {
 
-private final   UserService userService;
+  private final UserService userService;
 
-  public UserRestV1(UserService userService) {
+  public UserControllerV1(UserService userService) {
     this.userService = userService;
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<UserDto> findById(@PathVariable Long id){
+  public ResponseEntity<UserDto> findById(@PathVariable Long id) {
     return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
   }
+
   @GetMapping
-  public ResponseEntity<Collection<UserDto>> findAll(){
-    return new ResponseEntity<>(userService.findAll(),HttpStatus.OK);
+  public ResponseEntity<Collection<UserDto>> findAll() {
+    return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
   }
+
   @PostMapping
-  public ResponseEntity<UserDto> create(@RequestBody UserDto userDto){
-    return new ResponseEntity<>(userService.create(userDto),HttpStatus.CREATED);
+  public ResponseEntity<UserDto> create(@RequestBody UserDto userDto) {
+    return new ResponseEntity<>(userService.create(userDto), HttpStatus.CREATED);
   }
+
   @PostMapping("/create/all")
-  public ResponseEntity<Collection<UserDto>> createAll(@RequestBody Collection<UserDto> userDtos){
-    return new ResponseEntity<>(userService.createAll(userDtos),HttpStatus.CREATED);
+  public ResponseEntity<Collection<UserDto>> createAll(@RequestBody Collection<UserDto> userDtos) {
+    return new ResponseEntity<>(userService.createAll(userDtos), HttpStatus.CREATED);
   }
+
   @PutMapping
-  public ResponseEntity<UserDto> update(@RequestBody UserDto userDto){
-    return new ResponseEntity<>(userService.update(userDto,userDto.getId()),HttpStatus.OK);
+  public ResponseEntity<UserDto> update(@RequestBody UserDto userDto) {
+    return new ResponseEntity<>(userService.update(userDto, userDto.getId()), HttpStatus.OK);
   }
+
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteById(@PathVariable Long id ){
+  public ResponseEntity<Void> deleteById(@PathVariable Long id) {
     userService.deleteById(id);
-    return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
+
   @DeleteMapping
-  public ResponseEntity<Void> deleteAll(){
+  public ResponseEntity<Void> deleteAll() {
     userService.deleteAll();
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
+
   @GetMapping("/hello")
-  public ResponseEntity<String> getHello(){
-    return new ResponseEntity<>("Hi,dude",HttpStatus.OK);
+  public ResponseEntity<String> getHello() {
+    return new ResponseEntity<>("Hi,dude", HttpStatus.OK);
   }
+
 }

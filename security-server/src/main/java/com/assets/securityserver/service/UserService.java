@@ -7,5 +7,6 @@ import java.util.Collection;
 
 public interface UserService  extends AbstractService<UserDto,Long> {
 
+  UserDto findUserByEmail(String email);
 
 }

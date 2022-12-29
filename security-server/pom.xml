@@ -20,6 +20,7 @@
         <common.dto-version>1.0.0-SNAPSHOT</common.dto-version>
         <common.db-version>1.0.0-SNAPSHOT</common.db-version>
         <abstract.service-version>1.0.0-SNAPSHOT</abstract.service-version>
+        <java.jwt-version>4.2.1</java.jwt-version>
     </properties>
 
 
@@ -112,6 +113,7 @@
         <dependency>
             <groupId>org.checkerframework</groupId>
             <artifactId>checker</artifactId>
+            <version>3.28.0</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -143,6 +145,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${java.jwt-version}</version>
         </dependency>
     </dependencies>
 
