@@ -16,6 +16,7 @@
 
     <modules>
         <module>common-dtos</module>
+        <module>security-server</module>
         <module>common-db</module>
         <module>abstract-service</module>
         <module>asset-bom</module>
